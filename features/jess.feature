@@ -9,7 +9,6 @@ Feature: Make sure it's plumbed in correctly
     And the following addresses exist:
     | paon | street      | town     | postcode |
     | 5    | High Street | Testtown | SW1A 1AA |
-
     And I send a POST request to "/infer" with the following:
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
@@ -21,6 +20,80 @@ Feature: Make sure it's plumbed in correctly
     {
       "saon": null,
       "paon": 3,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    }
+  ]
+}
+"""
+
+  Scenario: Inferrence with multiple addresses
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 7    | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should be:
+"""
+{
+  "addresses": [
+    {
+      "saon": null,
+      "paon": 3,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 5,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    }
+  ]
+}
+"""
+
+  Scenario: Inferrence with even numbered addresses
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 10    | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":2,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should be:
+"""
+{
+  "addresses": [
+    {
+      "saon": null,
+      "paon": 4,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 6,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 8,
       "street": "High Street",
       "locality": null,
       "town": "Testtown",
