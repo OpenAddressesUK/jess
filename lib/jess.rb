@@ -24,8 +24,8 @@ class Jess < Sinatra::Base
     max = addresses.last["paon"] - 2
 
     unless state == "mixed"
-      (min..max).each do |n|
-        inferred << json.tap { |j| j["paon"] = n } if n.send("#{state}?")
+      (min..max).each do |num|
+        inferred << json.dup.tap { |j| j["paon"] = num } if num.send("#{state}?")
       end
     end
 
