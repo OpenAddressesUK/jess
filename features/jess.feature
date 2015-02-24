@@ -183,3 +183,31 @@ Feature: Make sure it's plumbed in correctly
   ]
 }
 """
+
+
+  Scenario: Inference removes silly numbers
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon        | street      | town     | postcode |
+    | 07535056159 | High Street | Testtown | SW1A 1AA |
+    | 966834552   | High Street | Testtown | SW1A 1AA |
+    | 5           | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should be:
+"""
+{
+  "addresses": [
+    {
+      "saon": null,
+      "paon": 3,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    }
+  ]
+}
+"""
