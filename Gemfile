@@ -6,6 +6,7 @@ gem 'sinatra'
 gem 'thin'
 gem 'rake'
 gem 'mongoid_address_models', github: "OpenAddressesUK/mongoid_address_models"
+gem 'unicorn'
 
 group :test do
   gem 'cucumber'
