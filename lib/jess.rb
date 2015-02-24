@@ -20,12 +20,16 @@ class Jess < Sinatra::Base
     state = paon_state(addresses)
 
     inferred = []
-    min = addresses.first["paon"] + 2
-    max = addresses.last["paon"] - 2
+    min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
+    max = addresses.last["paon"] - (state == "mixed" ? 1 : 2) 
 
     unless state == "mixed"
       (min..max).each do |num|
-        inferred << json.dup.tap { |j| j["paon"] = num } if num.send("#{state}?")
+        inferred << infer(json, num) if num.send("#{state}?")
+      end
+    else
+      (min..max).each do |num|
+        inferred << infer(json, num)
       end
     end
 
@@ -54,6 +58,10 @@ class Jess < Sinatra::Base
     else
       "odd"
     end
+  end
+
+  def infer(json, num)
+    json.dup.tap { |j| j["paon"] = num }
   end
 
   # start the server if ruby file executed directly

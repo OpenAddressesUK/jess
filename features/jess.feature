@@ -102,3 +102,84 @@ Feature: Make sure it's plumbed in correctly
   ]
 }
 """
+
+  Scenario: Inferrence with mixed numbered addresses
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 10    | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should be:
+"""
+{
+  "addresses": [
+    {
+      "saon": null,
+      "paon": 2,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 3,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 4,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 5,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 6,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 7,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 8,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 9,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    }
+  ]
+}
+"""
