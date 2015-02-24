@@ -17,7 +17,7 @@ class Jess < Sinatra::Base
     # strip away the non-numeric parts from the PAO
     addresses.each { |address| address["paon"] = address["paon"].to_i }
     # sort the addresses by paon
-    addresses.sort! { |a| a["paon"] }.reverse!
+    addresses.sort_by! { |a| a["paon"] }
     # Check whether paons are odd, even or both
     state = paon_state(addresses)
 
