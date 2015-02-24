@@ -17,13 +17,14 @@ class Jess < Sinatra::Base
     # strip away the non-numeric parts from the PAO
     addresses.each { |address| address["paon"] = address["paon"].to_i }
     # sort the addresses by paon
-    addresses.sort! { |a| a["paon"] }
+    addresses.sort! { |a| a["paon"] }.reverse!
     # Check whether paons are odd, even or both
     state = paon_state(addresses)
 
     inferred = []
+
     min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
-    max = addresses.last["paon"] - (state == "mixed" ? 1 : 2) 
+    max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
 
     unless state == "mixed"
       (min..max).each do |num|
