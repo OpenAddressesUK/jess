@@ -309,3 +309,31 @@ Feature: Make sure it's plumbed in correctly
   }
 }
 """
+
+  Scenario: Inferrence with existing address as a source
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 7    | High Street | Testtown | SW1A 1AA |
+    | 1    | High Street | Testtown | SW1A 1AA |
+    And I send a request to infer from the address "1, High Street, Testtown, SW1A 1AA"
+    Then the JSON response should contain:
+"""
+[
+  {
+    "saon": null,
+    "paon": 3,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 5,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
+"""
