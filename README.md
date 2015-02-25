@@ -31,23 +31,35 @@ If the address `7 High Street, Testtown SW1A 1AA` exists, then we can infer that
 
 ```JSON
 {
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 5,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
+  "addresses": {
+    "inferred": [
+      {
+        "saon": null,
+        "paon": 3,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      },
+      {
+        "saon": null,
+        "paon": 5,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      }
+    ],
+    "existing": [
+      {
+        "saon": null,
+        "paon": 7,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      }
+    ]
+  }
 }
 ```
