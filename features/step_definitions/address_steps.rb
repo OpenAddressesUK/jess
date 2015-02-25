@@ -17,3 +17,12 @@ Then /^the JSON response should contain:$/ do |json|
 
   expected.should match /#{expected}/
 end
+
+Then(/^I send a request to infer from the address "(.*?)"$/) do |address|
+  parts = address.split(", ")
+  address = Address.where(pao: parts[0], "street.name" => parts[1], "town.name" => parts[2], "postcode.name" => parts[3]).first
+  steps %Q{
+    And I send a POST request to "/infer" with the following:
+    | token | #{address.token} |
+  }
+end
