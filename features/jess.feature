@@ -311,7 +311,7 @@ Feature: Make sure it's plumbed in correctly
 """
 
   Scenario: Inferrence with existing address as a source
-    And the following addresses exist:
+    Given the following addresses exist:
     | paon | street      | town     | postcode |
     | 7    | High Street | Testtown | SW1A 1AA |
     | 1    | High Street | Testtown | SW1A 1AA |
