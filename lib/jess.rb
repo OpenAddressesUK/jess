@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'mongoid_address_models/require_all'
 require 'github/markdown'
+require 'platform-api'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml"), ENV["RACK_ENV"] || :development)
 
