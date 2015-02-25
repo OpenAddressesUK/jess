@@ -46,7 +46,7 @@ class Jess < Sinatra::Base
 
     {
       addresses: {
-        inferred: inferred.reject { |a| existing.include?(a) },
+        inferred: inferred.reject { |a| remove_urls(existing).include?(a) },
         existing: existing
       }
     }.tap{ |a| a["provenance"] = add_provenance(source, addresses.last) if params[:token] }.to_json
@@ -76,7 +76,11 @@ class Jess < Sinatra::Base
   end
 
   def infer(source, num)
-    source.dup.tap { |j| j["paon"] = num }
+    source.dup.tap { |j| j["paon"] = num ; j.delete("url") }
+  end
+
+  def remove_urls(array)
+    array.dup.map {|a| a.dup.tap { |h| h.delete("url") } }
   end
 
   def add_provenance(source, inferred)

@@ -266,7 +266,7 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+    Then the JSON response should contain:
 """
 {
   "addresses": {
@@ -295,7 +295,8 @@ Feature: Make sure it's plumbed in correctly
         "street": "High Street",
         "locality": null,
         "town": "Testtown",
-        "postcode": "SW1A 1AA"
+        "postcode": "SW1A 1AA",
+        "url": "http://alpha.openaddressesuk.org/address/*"
       },
       {
         "saon": null,
@@ -303,7 +304,8 @@ Feature: Make sure it's plumbed in correctly
         "street": "High Street",
         "locality": null,
         "town": "Testtown",
-        "postcode": "SW1A 1AA"
+        "postcode": "SW1A 1AA",
+        "url": "http://alpha.openaddressesuk.org/address/*"
       }
     ]
   }
