@@ -80,7 +80,7 @@ class Jess < Sinatra::Base
   end
 
   def remove_urls(array)
-    array.dup.map {|a| a.dup.tap { |h| h.delete("url") } }
+    array.map {|a| a.dup.tap { |h| h.delete("url") } }
   end
 
   def add_provenance(source, inferred)
