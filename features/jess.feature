@@ -211,3 +211,37 @@ Feature: Make sure it's plumbed in correctly
   ]
 }
 """
+
+  Scenario: Only infer updwards
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 25   | High Street | Testtown | SW1A 1AA |
+    | 5    | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":19,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should be:
+"""
+{
+  "addresses": [
+    {
+      "saon": null,
+      "paon": 21,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    },
+    {
+      "saon": null,
+      "paon": 23,
+      "street": "High Street",
+      "locality": null,
+      "town": "Testtown",
+      "postcode": "SW1A 1AA"
+    }
+  ]
+}
+"""

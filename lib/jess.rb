@@ -18,6 +18,8 @@ class Jess < Sinatra::Base
     addresses.each { |address| address["paon"] = address["paon"].to_i }
     # sort the addresses by paon
     addresses.sort_by! { |a| a["paon"] }
+    # Remove paons lower than the source
+    addresses.each {|a| addresses.delete(a) if a["paon"] < json["paon"]}
     # Check whether paons are odd, even or both
     state = paon_state(addresses)
 
