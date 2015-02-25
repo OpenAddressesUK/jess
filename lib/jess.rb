@@ -49,7 +49,7 @@ class Jess < Sinatra::Base
         inferred: inferred.reject { |a| existing.include?(a) },
         existing: existing
       }
-    }.to_json
+    }.tap{ |a| a["provenance"] = add_provenance(source, addresses.last) if params[:token] }.to_json
   end
 
   def address_hash(address)
@@ -60,6 +60,7 @@ class Jess < Sinatra::Base
       "locality" => address.locality.nil? ? nil : address.locality.name,
       "town" => address.town.name,
       "postcode" => address.postcode.name,
+      "url" => "http://alpha.openaddressesuk.org/address/#{address.token}"
     }
   end
 
@@ -76,6 +77,26 @@ class Jess < Sinatra::Base
 
   def infer(source, num)
     source.dup.tap { |j| j["paon"] = num }
+  end
+
+  def add_provenance(source, inferred)
+    {
+      activity: {
+        executed_at: DateTime.now,
+        processing_scripts: "https://github.com/OpenAddressesUK/jess",
+        derived_from: [
+          {
+            type: "inference",
+            inferred_from: [
+              source['url'],
+              inferred['url']
+            ],
+            inferred_at: DateTime.now,
+            processing_script: "https://github.com/OpenAddressesUK/jess/blob/5d954baa0b91ed25c42fb060ad659ce68cdd2e45/lib/jess.rb"
+          }
+        ]
+      }
+    }
   end
 
   # start the server if ruby file executed directly

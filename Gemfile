@@ -17,4 +17,5 @@ group :test do
   gem 'factory_girl'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'byebug'
+  gem 'timecop'
 end

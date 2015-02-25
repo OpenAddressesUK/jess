@@ -337,3 +337,32 @@ Feature: Make sure it's plumbed in correctly
   }
 ]
 """
+
+  @timecop
+  Scenario: Inferrence with existing address adds provenance
+    Given it is currently "2015-01-01T12:00:00"
+    Given the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 7    | High Street | Testtown | SW1A 1AA |
+    | 1    | High Street | Testtown | SW1A 1AA |
+    And I send a request to infer from the address "1, High Street, Testtown, SW1A 1AA"
+    Then the JSON response should contain:
+"""
+{
+  "activity": {
+    "executed_at": "2015-01-01T12:00:00.000+00:00",
+    "processing_scripts": "https://github.com/OpenAddressesUK/jess",
+    "derived_from": [
+      {
+        "type": "inference",
+        "inferred_from": [
+          "http://alpha.openaddressesuk.org/address/*",
+          "http://alpha.openaddressesuk.org/address/*"
+        ],
+        "inferred_at": "2015-01-01T12:00:00.000+00:00",
+        "processing_script": "https://github.com/OpenAddressesUK/jess/blob/5d954baa0b91ed25c42fb060ad659ce68cdd2e45/lib/jess.rb"
+      }
+    ]
+  }
+}
+"""

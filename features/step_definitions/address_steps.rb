@@ -12,10 +12,12 @@ Given(/^the following addresses exist:$/) do |addresses|
 end
 
 Then /^the JSON response should contain:$/ do |json|
-  expected = JSON.parse(json).to_s
+  expected = Regexp.escape(JSON.parse(json).to_s)
   actual = JSON.parse(last_response.body).to_s
 
-  actual.should match /#{Regexp.escape(expected)}/
+  expected.gsub!("\\*", ".+")
+
+  actual.should match /#{expected}/
 end
 
 Then(/^I send a request to infer from the address "(.*?)"$/) do |address|
@@ -25,4 +27,8 @@ Then(/^I send a request to infer from the address "(.*?)"$/) do |address|
     And I send a POST request to "/infer" with the following:
     | token | #{address.token} |
   }
+end
+
+Given(/^it is currently "(.*?)"$/) do |datetime|
+  Timecop.freeze(datetime)
 end
