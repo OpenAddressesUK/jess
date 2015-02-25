@@ -12,9 +12,9 @@ class Jess < Sinatra::Base
     json = JSON.parse(request.body.read)
     addresses = Address.where("street.name" => json["street"], "postcode.name" => json["postcode"]).map { |a| address_hash(a) }
     addresses << json
-    # Remove any addresses that start with 0 or are excessively large
-    addresses.delete_if { |a| a["paon"] =~ /^0.+$/ || a["paon"].to_i > 2000 }
-    # strip away the non-numeric parts from the PAO
+    # Remove any addresses that start with 0 or are excessively large or are non-numeric
+    addresses.delete_if { |a| a["paon"] =~ /^0.+$/ || a["paon"].to_i > 2000 || a["paon"] =~ /[^0-9]/ }
+    # Cast PAO as numeric
     addresses.each { |address| address["paon"] = address["paon"].to_i }
     # sort the addresses by paon
     addresses.sort_by! { |a| a["paon"] }
