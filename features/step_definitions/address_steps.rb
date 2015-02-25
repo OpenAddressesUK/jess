@@ -10,3 +10,10 @@ Given(/^the following addresses exist:$/) do |addresses|
     )
   end
 end
+
+Then /^the JSON response should contain:$/ do |json|
+  expected = JSON.parse(json).to_s
+  actual = JSON.parse(last_response.body).to_s
+
+  expected.should match /#{expected}/
+end

@@ -13,19 +13,15 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
 {
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
+  "saon": null,
+  "paon": 3,
+  "street": "High Street",
+  "locality": null,
+  "town": "Testtown",
+  "postcode": "SW1A 1AA"
 }
 """
 
@@ -38,28 +34,26 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
-{
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 5,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
-}
+[
+  {
+    "saon": null,
+    "paon": 3,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 5,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
 """
 
   Scenario: Inferrence with even numbered addresses
@@ -71,36 +65,34 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":2,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
-{
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 4,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 6,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 8,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
-}
+[
+  {
+    "saon": null,
+    "paon": 4,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 6,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 8,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
 """
 
   Scenario: Inferrence with mixed numbered addresses
@@ -112,76 +104,74 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
-{
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 2,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 4,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 5,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 6,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 7,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 8,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 9,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
-}
+[
+  {
+    "saon": null,
+    "paon": 2,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 3,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 4,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 5,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 6,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 7,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 8,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 9,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
 """
 
 
@@ -196,20 +186,18 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
-{
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
-}
+[
+  {
+    "saon": null,
+    "paon": 3,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
 """
 
   Scenario: Only infer updwards
@@ -222,28 +210,26 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":19,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
-  Then the JSON response should be:
+  Then the JSON response should contain:
 """
-{
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 21,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    },
-    {
-      "saon": null,
-      "paon": 23,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
-}
+[
+  {
+    "saon": null,
+    "paon": 21,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  },
+  {
+    "saon": null,
+    "paon": 23,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
 """
 
   Scenario: Inference removes non-numeric paos
@@ -256,18 +242,70 @@ Feature: Make sure it's plumbed in correctly
 """
 {"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
 """
+  Then the JSON response should contain:
+"""
+[
+  {
+    "saon": null,
+    "paon": 3,
+    "street": "High Street",
+    "locality": null,
+    "town": "Testtown",
+    "postcode": "SW1A 1AA"
+  }
+]
+"""
+
+  Scenario: Inference puts existing addresses in a seperate array
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 9   | High Street | Testtown  | SW1A 1AA |
+    | 5    | High Street | Testtown | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
   Then the JSON response should be:
 """
 {
-  "addresses": [
-    {
-      "saon": null,
-      "paon": 3,
-      "street": "High Street",
-      "locality": null,
-      "town": "Testtown",
-      "postcode": "SW1A 1AA"
-    }
-  ]
+  "addresses": {
+    "inferred": [
+      {
+        "saon": null,
+        "paon": 3,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      },
+      {
+        "saon": null,
+        "paon": 7,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      }
+    ],
+    "existing": [
+      {
+        "saon": null,
+        "paon": 5,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      },
+      {
+        "saon": null,
+        "paon": 9,
+        "street": "High Street",
+        "locality": null,
+        "town": "Testtown",
+        "postcode": "SW1A 1AA"
+      }
+    ]
+  }
 }
 """

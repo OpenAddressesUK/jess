@@ -24,6 +24,7 @@ class Jess < Sinatra::Base
     state = paon_state(addresses)
 
     inferred = []
+    existing = addresses.reject { |a| a == json }
 
     min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
     max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
@@ -39,7 +40,10 @@ class Jess < Sinatra::Base
     end
 
     {
-      addresses: inferred
+      addresses: {
+        inferred: inferred.reject { |a| existing.include?(a) },
+        existing: existing
+      }
     }.to_json
   end
 
