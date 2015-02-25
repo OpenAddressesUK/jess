@@ -107,7 +107,7 @@ class Jess < Sinatra::Base
   def current_sha
     if ENV['RACK_ENV'] == "production"
       @current_sha ||= begin
-        heroku = PlatformAPI.connect_oauth(ENV['HEROKU_TOKEN'])
+        heroku = ::PlatformAPI.connect_oauth(ENV['HEROKU_TOKEN'])
         slug_id = heroku.release.list(ENV['HEROKU_APP']).last["slug"]["id"]
         heroku.slug.info(ENV['HEROKU_APP'], slug_id)["commit"]
       end
