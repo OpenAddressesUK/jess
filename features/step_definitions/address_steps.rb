@@ -15,7 +15,7 @@ Then /^the JSON response should contain:$/ do |json|
   expected = JSON.parse(json).to_s
   actual = JSON.parse(last_response.body).to_s
 
-  expected.should match /#{expected}/
+  actual.should match /#{Regexp.escape(expected)}/
 end
 
 Then(/^I send a request to infer from the address "(.*?)"$/) do |address|
