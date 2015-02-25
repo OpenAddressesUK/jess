@@ -1,11 +1,12 @@
 require 'sinatra/base'
 require 'mongoid_address_models/require_all'
+require 'github/markdown'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml"), ENV["RACK_ENV"] || :development)
 
 class Jess < Sinatra::Base
   get '/' do
-    'Hello from Jess'
+    erb :index
   end
 
   post '/infer' do
