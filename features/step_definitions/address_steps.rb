@@ -32,3 +32,7 @@ end
 Given(/^it is currently "(.*?)"$/) do |datetime|
   Timecop.freeze(datetime)
 end
+
+Given(/^I stub the current_sha to return "(.*?)"$/) do |sha|
+  Jess.any_instance.stub(:current_sha) { sha }
+end

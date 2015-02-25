@@ -8,6 +8,7 @@ gem 'rake'
 gem 'mongoid_address_models', github: "OpenAddressesUK/mongoid_address_models"
 gem 'unicorn'
 gem 'github-markdown'
+gem 'platform-api'
 
 group :test do
   gem 'cucumber'

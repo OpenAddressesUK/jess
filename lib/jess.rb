@@ -80,7 +80,7 @@ class Jess < Sinatra::Base
   end
 
   def remove_urls(array)
-    array.map {|a| a.dup.tap { |h| h.delete("url") } }
+    array.dup.map {|a| a.dup.tap { |h| h.delete("url") } }
   end
 
   def add_provenance(source, inferred)
@@ -96,11 +96,23 @@ class Jess < Sinatra::Base
               inferred['url']
             ],
             inferred_at: DateTime.now,
-            processing_script: "https://github.com/OpenAddressesUK/jess/blob/5d954baa0b91ed25c42fb060ad659ce68cdd2e45/lib/jess.rb"
+            processing_script: "https://github.com/OpenAddressesUK/jess/blob/#{current_sha}/lib/jess.rb"
           }
         ]
       }
     }
+  end
+
+  def current_sha
+    if ENV['RACK_ENV'] == "production"
+      @current_sha ||= begin
+        heroku = PlatformAPI.connect_oauth(ENV['HEROKU_TOKEN'])
+        slug_id = heroku.release.list(ENV['HEROKU_APP']).last["slug"]["id"]
+        heroku.slug.info(ENV['HEROKU_APP'], slug_id)["commit"]
+      end
+    else
+      @current_sha ||= `git rev-parse HEAD`.strip
+    end
   end
 
   # start the server if ruby file executed directly

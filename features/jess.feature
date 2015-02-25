@@ -343,6 +343,7 @@ Feature: Make sure it's plumbed in correctly
   @timecop
   Scenario: Inferrence with existing address adds provenance
     Given it is currently "2015-01-01T12:00:00"
+    And I stub the current_sha to return "5d954baa0b91ed25c42fb060ad659ce68cdd2e45"
     Given the following addresses exist:
     | paon | street      | town     | postcode |
     | 7    | High Street | Testtown | SW1A 1AA |
