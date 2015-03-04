@@ -359,8 +359,8 @@ Feature: Make sure it's plumbed in correctly
       {
         "type": "inference",
         "inferred_from": [
-          "http://alpha.openaddressesuk.org/address/*",
-          "http://alpha.openaddressesuk.org/address/*"
+          "http://ernest.openaddressesuk.org/addresses/*",
+          "http://ernest.openaddressesuk.org/addresses/*"
         ],
         "inferred_at": "2015-01-01T12:00:00.000+00:00",
         "processing_script": "https://github.com/OpenAddressesUK/jess/blob/5d954baa0b91ed25c42fb060ad659ce68cdd2e45/lib/jess.rb"

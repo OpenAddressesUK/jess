@@ -6,7 +6,19 @@ Given(/^the following addresses exist:$/) do |addresses|
                       street: FactoryGirl.create(:street, name: address[:street]),
                       locality: address[:locality].nil? ? nil : FactoryGirl.create(:locality, name: address[:locality]),
                       town: FactoryGirl.create(:town, name: address[:town]),
-                      postcode: FactoryGirl.create(:postcode, name: address[:postcode])
+                      postcode: FactoryGirl.create(:postcode, name: address[:postcode]),
+                      provenance: {
+                        activity: {
+                          derived_from: [
+                            {
+                              type: "Source",
+                              urls: [
+                                "http://ernest.openaddressesuk.org/addresses/2935071"
+                              ],
+                            }
+                          ]
+                        }
+                      }
     )
   end
 end

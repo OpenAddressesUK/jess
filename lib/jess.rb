@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'mongoid_address_models/require_all'
 require 'github/markdown'
 require 'platform-api'
+require 'active_support/all'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml"), ENV["RACK_ENV"] || :development)
 
@@ -30,7 +31,7 @@ class Jess < Sinatra::Base
     state = paon_state(addresses)
 
     inferred = []
-    existing = addresses.reject { |a| a == source }
+    existing = addresses.map {|x| x.except("provenance")}.reject { |a| a == source }
 
     min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
     max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
@@ -61,7 +62,8 @@ class Jess < Sinatra::Base
       "locality" => address.locality.nil? ? nil : address.locality.name,
       "town" => address.town.name,
       "postcode" => address.postcode.name,
-      "url" => "http://alpha.openaddressesuk.org/address/#{address.token}"
+      "url" => "http://alpha.openaddressesuk.org/address/#{address.token}",
+      "provenance" => address.provenance
     }
   end
 
@@ -77,7 +79,7 @@ class Jess < Sinatra::Base
   end
 
   def infer(source, num)
-    source.dup.tap { |j| j["paon"] = num ; j.delete("url") }
+    source.except("provenance").dup.tap { |j| j["paon"] = num ; j.delete("url") }
   end
 
   def remove_urls(array)
@@ -93,8 +95,8 @@ class Jess < Sinatra::Base
           {
             type: "inference",
             inferred_from: [
-              source['url'],
-              inferred['url']
+              find_ernest_url(source),
+              find_ernest_url(inferred)
             ],
             inferred_at: DateTime.now,
             processing_script: "https://github.com/OpenAddressesUK/jess/blob/#{current_sha}/lib/jess.rb"
@@ -114,6 +116,13 @@ class Jess < Sinatra::Base
     else
       @current_sha ||= `git rev-parse HEAD`.strip
     end
+  end
+
+  def find_ernest_url(address)
+    derivation = address['provenance']['activity']['derived_from'].find do |d|
+      d['type'] == "Source" && d['urls'].any?{|url| url.include? "ernest.openaddressesuk.org"}
+    end
+    derivation['urls'].find{|x| x.include? "ernest.openaddressesuk.org"}
   end
 
   # start the server if ruby file executed directly
