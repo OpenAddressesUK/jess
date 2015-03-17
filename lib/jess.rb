@@ -16,6 +16,7 @@ class Jess < Sinatra::Base
       source = address_hash(Address.find(params[:token]))
     else
       source = JSON.parse(request.body.read)
+      ["street", "locality", "town"].each { |s| source[s].upcase! if source[s].class == String }
     end
     addresses = Address.where("street.name" => source["street"], "postcode.name" => source["postcode"]).map { |a| address_hash(a) }
     addresses << source
