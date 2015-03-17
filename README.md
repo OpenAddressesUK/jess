@@ -59,3 +59,5 @@ If the address `7 High Street, Testtown SW1A 1AA` exists, then we can infer that
   }
 }
 ```
+
+If an address you want to infer from already exists in the Open Addresses database, you can pass the addresses token to infer from that. For example for the address `https://alpha.openaddressesuk.org/addresses/VDtibW`, simply send a POST request to `http://oa-jess.herokuapp.com/infer?token=VDtibW`
