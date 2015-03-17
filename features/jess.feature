@@ -8,19 +8,19 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 5    | High Street | Testtown | SW1A 1AA |
+    | 5    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
 {
   "saon": null,
   "paon": 3,
-  "street": "High Street",
+  "street": "HIGH STREET",
   "locality": null,
-  "town": "Testtown",
+  "town": "TESTTOWN",
   "postcode": "SW1A 1AA"
 }
 """
@@ -29,10 +29,10 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 7    | High Street | Testtown | SW1A 1AA |
+    | 7    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -40,17 +40,17 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 3,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 5,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -60,10 +60,10 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 10    | High Street | Testtown | SW1A 1AA |
+    | 10    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":2,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":2,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -71,25 +71,25 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 4,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 6,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 8,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -99,10 +99,10 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 10    | High Street | Testtown | SW1A 1AA |
+    | 10    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -110,65 +110,65 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 2,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 3,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 4,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 5,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 6,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 7,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 8,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 9,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -179,12 +179,12 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon        | street      | town     | postcode |
-    | 07535056159 | High Street | Testtown | SW1A 1AA |
-    | 966834552   | High Street | Testtown | SW1A 1AA |
-    | 5           | High Street | Testtown | SW1A 1AA |
+    | 07535056159 | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 966834552   | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 5           | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -192,9 +192,9 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 3,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -204,11 +204,11 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 25   | High Street | Testtown | SW1A 1AA |
-    | 5    | High Street | Testtown | SW1A 1AA |
+    | 25   | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 5    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":19,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":19,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -216,17 +216,17 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 21,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 23,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -236,11 +236,11 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon        | street      | town     | postcode |
-    | 7-9         | High Street | Testtown | SW1A 1AA |
-    | 5           | High Street | Testtown | SW1A 1AA |
+    | 7-9         | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 5           | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
   Then the JSON response should contain:
 """
@@ -248,9 +248,9 @@ Feature: Make sure it's plumbed in correctly
   {
     "saon": null,
     "paon": 3,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -260,11 +260,11 @@ Feature: Make sure it's plumbed in correctly
     Given I send and accept JSON
     And the following addresses exist:
     | paon | street      | town     | postcode |
-    | 9   | High Street | Testtown  | SW1A 1AA |
-    | 5    | High Street | Testtown | SW1A 1AA |
+    | 9   | HIGH STREET | TESTTOWN  | SW1A 1AA |
+    | 5    | HIGH STREET | TESTTOWN | SW1A 1AA |
     And I send a POST request to "/infer" with the following:
 """
-{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+{"saon":null,"paon":1,"street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
 """
     Then the JSON response should contain:
 """
@@ -274,17 +274,17 @@ Feature: Make sure it's plumbed in correctly
       {
         "saon": null,
         "paon": 3,
-        "street": "High Street",
+        "street": "HIGH STREET",
         "locality": null,
-        "town": "Testtown",
+        "town": "TESTTOWN",
         "postcode": "SW1A 1AA"
       },
       {
         "saon": null,
         "paon": 7,
-        "street": "High Street",
+        "street": "HIGH STREET",
         "locality": null,
-        "town": "Testtown",
+        "town": "TESTTOWN",
         "postcode": "SW1A 1AA"
       }
     ],
@@ -292,18 +292,18 @@ Feature: Make sure it's plumbed in correctly
       {
         "saon": null,
         "paon": 5,
-        "street": "High Street",
+        "street": "HIGH STREET",
         "locality": null,
-        "town": "Testtown",
+        "town": "TESTTOWN",
         "postcode": "SW1A 1AA",
         "url": "http://alpha.openaddressesuk.org/address/*"
       },
       {
         "saon": null,
         "paon": 9,
-        "street": "High Street",
+        "street": "HIGH STREET",
         "locality": null,
-        "town": "Testtown",
+        "town": "TESTTOWN",
         "postcode": "SW1A 1AA",
         "url": "http://alpha.openaddressesuk.org/address/*"
       }
@@ -315,26 +315,26 @@ Feature: Make sure it's plumbed in correctly
   Scenario: Inferrence with existing address as a source
     Given the following addresses exist:
     | paon | street      | town     | postcode |
-    | 7    | High Street | Testtown | SW1A 1AA |
-    | 1    | High Street | Testtown | SW1A 1AA |
-    And I send a request to infer from the address "1, High Street, Testtown, SW1A 1AA"
+    | 7    | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 1    | HIGH STREET | TESTTOWN | SW1A 1AA |
+    And I send a request to infer from the address "1, HIGH STREET, TESTTOWN, SW1A 1AA"
     Then the JSON response should contain:
 """
 [
   {
     "saon": null,
     "paon": 3,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   },
   {
     "saon": null,
     "paon": 5,
-    "street": "High Street",
+    "street": "HIGH STREET",
     "locality": null,
-    "town": "Testtown",
+    "town": "TESTTOWN",
     "postcode": "SW1A 1AA"
   }
 ]
@@ -346,9 +346,9 @@ Feature: Make sure it's plumbed in correctly
     And I stub the current_sha to return "5d954baa0b91ed25c42fb060ad659ce68cdd2e45"
     Given the following addresses exist:
     | paon | street      | town     | postcode |
-    | 7    | High Street | Testtown | SW1A 1AA |
-    | 1    | High Street | Testtown | SW1A 1AA |
-    And I send a request to infer from the address "1, High Street, Testtown, SW1A 1AA"
+    | 7    | HIGH STREET | TESTTOWN | SW1A 1AA |
+    | 1    | HIGH STREET | TESTTOWN | SW1A 1AA |
+    And I send a request to infer from the address "1, HIGH STREET, TESTTOWN, SW1A 1AA"
     Then the JSON response should contain:
 """
 {
@@ -367,5 +367,26 @@ Feature: Make sure it's plumbed in correctly
       }
     ]
   }
+}
+"""
+
+  Scenario: Case insensitive
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | 5    | HIGH STREET | TESTTOWN | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":1,"street":"High Street","locality":null,"town":"Testtown","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should contain:
+"""
+{
+  "saon": null,
+  "paon": 3,
+  "street": "HIGH STREET",
+  "locality": null,
+  "town": "TESTTOWN",
+  "postcode": "SW1A 1AA"
 }
 """
