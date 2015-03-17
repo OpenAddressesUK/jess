@@ -2,8 +2,6 @@
 
 # Jess
 
-![](https://upload.wikimedia.org/wikipedia/en/1/10/Guess_with_Jess_logo.png)
-
 A Sinatra app that, when presented with an address, attempts to infer the existence of other addresses using the [OpenAddresses](https://alpha.openaddressesuk.org/) database.
 
 For background on our approach to inference, see this [blog post](https://alpha.openaddressesuk.org/blog/2015/02/12/inference)
