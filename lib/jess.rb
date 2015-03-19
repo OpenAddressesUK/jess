@@ -28,22 +28,26 @@ class Jess < Sinatra::Base
     addresses.sort_by! { |a| a["paon"] }
     # Remove paons lower than the source
     addresses.each {|a| addresses.delete(a) if a["paon"] < source["paon"]}
-    # Check whether paons are odd, even or both
-    state = paon_state(addresses)
 
     inferred = []
-    existing = addresses.map {|x| x.except("provenance")}.reject { |a| a == source }
+    existing = []
+    unless addresses.empty?
+      # Check whether paons are odd, even or both
+      state = paon_state(addresses)
 
-    min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
-    max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
+      existing = addresses.map {|x| x.except("provenance")}.reject { |a| a == source }
+      
+      min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
+      max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
 
-    unless state == "mixed"
-      (min..max).each do |num|
-        inferred << infer(source, num) if num.send("#{state}?")
-      end
-    else
-      (min..max).each do |num|
-        inferred << infer(source, num)
+      unless state == "mixed"
+        (min..max).each do |num|
+          inferred << infer(source, num) if num.send("#{state}?")
+        end
+      else
+        (min..max).each do |num|
+          inferred << infer(source, num)
+        end
       end
     end
 
