@@ -27,7 +27,7 @@ class Jess < Sinatra::Base
     # sort the addresses by paon
     addresses.sort_by! { |a| a["paon"] }
     # Remove paons lower than the source
-    addresses.each {|a| addresses.delete(a) if a["paon"] < source["paon"]}
+    addresses.each {|a| addresses.delete(a) if a["paon"] < source["paon"].to_i}
 
     inferred = []
     existing = []
