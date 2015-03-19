@@ -390,3 +390,22 @@ Feature: Make sure it's plumbed in correctly
   "postcode": "SW1A 1AA"
 }
 """
+
+  Scenario: Inference without numbers
+    Given I send and accept JSON
+    And the following addresses exist:
+    | paon | street      | town     | postcode |
+    | BOB  | HIGH STREET | TESTTOWN | SW1A 1AA |
+    And I send a POST request to "/infer" with the following:
+"""
+{"saon":null,"paon":"BOB","street":"HIGH STREET","locality":null,"town":"TESTTOWN","postcode":"SW1A 1AA"}
+"""
+  Then the JSON response should contain:
+"""
+{
+  "addresses": {
+    "inferred": [],
+    "existing": []
+  }
+}
+"""
