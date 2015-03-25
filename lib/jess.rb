@@ -3,7 +3,6 @@ require 'mongoid_address_models/require_all'
 require 'github/markdown'
 require 'platform-api'
 require 'active_support/all'
-require 'byebug'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml"), ENV["RACK_ENV"] || :development)
 
@@ -131,7 +130,6 @@ class Jess < Sinatra::Base
   end
 
   def find_ernest_url(address)
-    byebug
     derivation = address['provenance']['activity']['derived_from'].find do |d|
       d['type'] == "Source" && d['urls'].any?{|url| url.include? "ernest.openaddressesuk.org"}
     end
