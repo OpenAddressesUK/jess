@@ -49,14 +49,20 @@ class Jess < Sinatra::Base
           inferred << infer(source, num)
         end
       end
+      {
+        addresses: {
+          inferred: inferred.reject { |a| remove_urls(existing).include?(a) },
+          existing: existing
+        }
+      }.tap{ |a| a["provenance"] = add_provenance(source, addresses.last) if params[:token] }.to_json
+    else
+      {
+        addresses: {
+          inferred: [],
+          existing: []
+        }
+      }.to_json
     end
-
-    {
-      addresses: {
-        inferred: inferred.reject { |a| remove_urls(existing).include?(a) },
-        existing: existing
-      }
-    }.tap{ |a| a["provenance"] = add_provenance(source, addresses.last) if params[:token] }.to_json
   end
 
   def address_hash(address)
