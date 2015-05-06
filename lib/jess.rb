@@ -18,7 +18,7 @@ class Jess < Sinatra::Base
       source = JSON.parse(request.body.read)
       ["street", "locality", "town"].each { |s| source[s].upcase! if source[s].class == String }
     end
-    addresses = Address.where("street.name" => source["street"], "postcode.name" => source["postcode"]).map { |a| address_hash(a) }
+    addresses = Address.where("street.name" => source["street"], "postcode.name" => source["postcode"], :source.ne => "inference").map { |a| address_hash(a) }
     addresses << source
     # Remove any addresses that start with 0 or are excessively large or are non-numeric
     addresses.delete_if { |a| a["paon"] =~ /^0.+$/ || a["paon"].to_i > 2000 || a["paon"] =~ /[^0-9]/ }
@@ -36,7 +36,7 @@ class Jess < Sinatra::Base
       state = paon_state(addresses)
 
       existing = addresses.map {|x| x.except("provenance")}.reject { |a| a == source }
-      
+
       min = addresses.first["paon"] + (state == "mixed" ? 1 : 2)
       max = addresses.last["paon"] - (state == "mixed" ? 1 : 2)
 

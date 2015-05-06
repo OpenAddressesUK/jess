@@ -340,6 +340,48 @@ Feature: Make sure it's plumbed in correctly
 ]
 """
 
+  Scenario: Inferrence with existing address as a source
+  Given the following addresses exist:
+  | paon  | street      | town     | postcode | source    |
+  | 7     | HIGH STREET | TESTTOWN | SW1A 1AA | url       |
+  | 1     | HIGH STREET | TESTTOWN | SW1A 1AA | url       |
+  | 11    | HIGH STREET | TESTTOWN | SW1A 1AA | inference |
+  And I send a request to infer from the address "1, HIGH STREET, TESTTOWN, SW1A 1AA"
+  Then the JSON response should contain:
+"""
+[
+{
+  "saon": null,
+  "paon": 3,
+  "street": "HIGH STREET",
+  "locality": null,
+  "town": "TESTTOWN",
+  "postcode": "SW1A 1AA"
+},
+{
+  "saon": null,
+  "paon": 5,
+  "street": "HIGH STREET",
+  "locality": null,
+  "town": "TESTTOWN",
+  "postcode": "SW1A 1AA"
+}
+]
+"""
+  And the JSON response should not contain:
+"""
+[
+{
+  "saon": null,
+  "paon": 9,
+  "street": "HIGH STREET",
+  "locality": null,
+  "town": "TESTTOWN",
+  "postcode": "SW1A 1AA"
+}
+]
+"""
+
   @timecop
   Scenario: Inferrence with existing address adds provenance
     Given it is currently "2015-01-01T12:00:00"

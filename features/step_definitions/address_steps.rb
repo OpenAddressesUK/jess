@@ -7,6 +7,7 @@ Given(/^the following addresses exist:$/) do |addresses|
                       locality: address[:locality].nil? ? nil : FactoryGirl.create(:locality, name: address[:locality]),
                       town: FactoryGirl.create(:town, name: address[:town]),
                       postcode: FactoryGirl.create(:postcode, name: address[:postcode]),
+                      source: address[:source].nil? ? "url" : address[:source],
                       provenance: {
                         activity: {
                           derived_from: [
@@ -23,13 +24,17 @@ Given(/^the following addresses exist:$/) do |addresses|
   end
 end
 
-Then /^the JSON response should contain:$/ do |json|
+Then /^the JSON response should ?(not)? contain:$/ do |match, json|
   expected = Regexp.escape(JSON.parse(json).to_s)
   actual = JSON.parse(last_response.body).to_s
 
   expected.gsub!("\\*", ".+")
 
-  actual.should match /#{expected}/
+  if match == "not"
+    actual.should_not match(/#{expected}/)
+  else
+    actual.should match(/#{expected}/)
+  end
 end
 
 Then(/^I send a request to infer from the address "(.*?)"$/) do |address|
