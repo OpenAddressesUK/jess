@@ -13,7 +13,15 @@ class Jess < Sinatra::Base
 
   post '/infer' do
     if params[:token]
-      source = address_hash(Address.find(params[:token]))
+      address = Address.find(params[:token])
+      if address.source == "inference"
+        status 400
+        return {
+          "error" => "Sorry! We can't infer from inferred addresses"
+        }.to_json
+      else
+        source = address_hash(address)
+      end
     else
       source = JSON.parse(request.body.read)
       ["street", "locality", "town"].each { |s| source[s].upcase! if source[s].class == String }

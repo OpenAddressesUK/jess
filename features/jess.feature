@@ -382,6 +382,19 @@ Feature: Make sure it's plumbed in correctly
 ]
 """
 
+  Scenario: Inferrence with existing inferred address as a source
+  Given the following addresses exist:
+  | paon | street      | town     | postcode | source    |
+  | 7    | HIGH STREET | TESTTOWN | SW1A 1AA | url       |
+  | 1    | HIGH STREET | TESTTOWN | SW1A 1AA | inference |
+  And I send a request to infer from the address "1, HIGH STREET, TESTTOWN, SW1A 1AA"
+  Then the response status should be "400"
+  And the JSON response should be:
+"""
+{
+  "error": "Sorry! We can't infer from inferred addresses"
+}
+"""
   @timecop
   Scenario: Inferrence with existing address adds provenance
     Given it is currently "2015-01-01T12:00:00"
