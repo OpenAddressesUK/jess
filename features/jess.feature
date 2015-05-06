@@ -340,7 +340,7 @@ Feature: Make sure it's plumbed in correctly
 ]
 """
 
-  Scenario: Inferrence with existing address as a source
+  Scenario: Inferrence with existing address as a source ignores inferred addresses
   Given the following addresses exist:
   | paon  | street      | town     | postcode | source    |
   | 7     | HIGH STREET | TESTTOWN | SW1A 1AA | url       |
