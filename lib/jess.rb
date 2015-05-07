@@ -74,7 +74,7 @@ class Jess < Sinatra::Base
 
   def address_hash(address)
     {
-      "saon" => address.sao,
+      "saon" => nil,
       "paon" => address.pao,
       "street" => address.street.name,
       "locality" => address.locality.nil? ? nil : address.locality.name,
