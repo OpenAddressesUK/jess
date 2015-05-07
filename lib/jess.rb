@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require 'mongoid_address_models/require_all'
 require 'github/markdown'
-require 'platform-api'
 require 'active_support/all'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml"), ENV["RACK_ENV"] || :development)
@@ -127,11 +126,7 @@ class Jess < Sinatra::Base
 
   def current_sha
     if ENV['RACK_ENV'] == "production"
-      @current_sha ||= begin
-        heroku = ::PlatformAPI.connect_oauth(ENV['HEROKU_TOKEN'])
-        slug_id = heroku.release.list(ENV['HEROKU_APP']).last["slug"]["id"]
-        heroku.slug.info(ENV['HEROKU_APP'], slug_id)["commit"]
-      end
+      @current_sha ||= ENV['CURRENT_SHA']
     else
       @current_sha ||= `git rev-parse HEAD`.strip
     end

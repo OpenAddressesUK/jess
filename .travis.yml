@@ -10,5 +10,6 @@ deploy:
   api_key:
     secure: wL0p/VcWUF+gi3drTasUx7R8RfMbacFLgjd9CiuX9/MSl6SupVedVALYCHczwHbQGNws8VncQVkGP6CtvuxXtDGzgzN9MUoFiM0KKI4bwTDkmGlTgncJE5kb625ZURFNvD5vVc5ISOk0ixqVKryyTGDT5aXZm3PMt2+LjkO+NiA=
   app: oa-jess
+  run: rake jess:set_sha
   on:
     repo: OpenAddressesUK/jess
